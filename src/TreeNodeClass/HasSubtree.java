@@ -16,7 +16,7 @@ public class HasSubtree {
 
     public boolean HasSubtree(TreeNode root1, TreeNode root2) {
         boolean result =false;
-        if(root1!=null&&root2!=null) {
+        if(root1!=null&&root2!=null) {      //递归退出条件
             if (root1.val == root2.val) {
                 result = DoesTree1HasTree2(root1, root2);
             }
@@ -30,7 +30,7 @@ public class HasSubtree {
     }
 
     public boolean DoesTree1HasTree2(TreeNode root1, TreeNode root2) {
-        if(root1==null&&root2!=null){
+        if(root1==null&&root2!=null){   //递归退出条件
             return false;
         }
         if(root2==null)

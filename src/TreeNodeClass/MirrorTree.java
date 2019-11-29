@@ -10,7 +10,7 @@ public class MirrorTree {
     public void Mirror(TreeNode root) {
         if(root==null)
             return ;
-        if(root.left==null&&root.right==null)
+        if(root.left==null&&root.right==null)   // 不加判断也行 加这个判断会更快一点
             return ;
         TreeNode temp=root.left;
         root.left=root.right;

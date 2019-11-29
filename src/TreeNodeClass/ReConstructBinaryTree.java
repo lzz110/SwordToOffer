@@ -5,7 +5,7 @@ package TreeNodeClass;
  *
  * 思路： 递归调用 核心函数（pre ,preStart,preEnd,in,inStart,inEnd）
  *
- * 注意： 递归中 前序 和 中序 的 头节点和尾节点
+ * 注意： 递归的 前序 和 中序 的 头节点和尾节点
  *
  */
 public class ReConstructBinaryTree {
