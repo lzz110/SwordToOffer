@@ -13,17 +13,17 @@ import java.util.LinkedList;
  */
 public class PrintFromTopToBottom {
     public static void main(String[] args) {
-        TreeNode mytreenodeleft=new TreeNode(6);
-        mytreenodeleft.setLeft(new TreeNode(5));
-        mytreenodeleft.setRight(new TreeNode(7));
+        TreeNode MyTreeNodeLeft =new TreeNode(6);
+        MyTreeNodeLeft.setLeft(new TreeNode(5));
+        MyTreeNodeLeft.setRight(new TreeNode(7));
 
-        TreeNode mytreenoderight=new TreeNode(10);
-        mytreenoderight.setLeft(new TreeNode(9));
-        mytreenoderight.setRight(new TreeNode(11));
+        TreeNode MyTreeNodeRight=new TreeNode(10);
+        MyTreeNodeRight.setLeft(new TreeNode(9));
+        MyTreeNodeRight.setRight(new TreeNode(11));
 
         TreeNode root=new TreeNode(8);
-        root.setLeft(mytreenodeleft);
-        root.setRight(mytreenoderight);
+        root.setLeft(MyTreeNodeLeft);
+        root.setRight(MyTreeNodeRight);
 
         ArrayList<Integer> res=new PrintFromTopToBottom().PrintFromTopToBottom(root);
         Iterator it=res.iterator();

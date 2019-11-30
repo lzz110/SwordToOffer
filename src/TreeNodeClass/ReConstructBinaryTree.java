@@ -25,10 +25,10 @@ public class ReConstructBinaryTree {
     private TreeNode reConstructBinaryTreeCore(int [] pre,int startPre,int endPre,
                                                int [] in,int startIn,int endIn) {
 
-        if(startPre>endPre||startIn>endIn)
+        if(startPre>endPre||startIn>endIn)      //递归退出条件
             return null;
         TreeNode root=new TreeNode(pre[startPre]);  //给当前根节点创建一棵树 递归返回
-        for(int i=startIn;i<=endIn;i++)
+        for(int i=startIn;i<=endIn;i++)     //注意 i<=endIn
             if(in[i]==pre[startPre]){   //在 中序遍历 中找 前序遍历 的根节点
                 //[startIn,i] 是i这个元素的左孩子及其子节点
                 // i是中序遍历的根节点 startPre 是前序遍历的根节点
