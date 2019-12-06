@@ -11,6 +11,7 @@ package BackTrackClass;
  *                进入递归之前 将该位置 true 表示已走过
  *                然后写递归函数
  *                进入递归之后 将该位置 false 表示未走过 等待再次进入
+ * 注意： 递归中 str的index  是 index+1 不能写成index++ 如果写 index++ 并且return false 下一次index 就是+1之后的值了 
  */
 
 public class HasPath {
