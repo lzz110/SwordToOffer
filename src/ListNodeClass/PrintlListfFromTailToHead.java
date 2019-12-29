@@ -63,7 +63,7 @@ public class PrintlListfFromTailToHead {
     public class Solution {
         ArrayList<Integer> res=new ArrayList<>();
         public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-            if(listNode!=null){
+            if(listNode!=null){		//注意是if 不是while
                 printListFromTailToHead(listNode.next);
                 res.add(listNode.val);
             }
