@@ -61,7 +61,7 @@ public class MergeTwoList {
     //退出while 循环之后 直接将剩下的链表添加到 root节点之后
     public ListNode Merge(ListNode list1,ListNode list2) {
        ListNode head=new ListNode(-1);
-       head.next=null;
+       head.next=null;		//将当前节点的next 指向空
        ListNode root=head;
        while(list1!=null&&list2!=null){
            if(list1.val<list2.val){
