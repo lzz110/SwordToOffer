@@ -4,6 +4,7 @@ package ListNodeClass;
  *  题目：反转链表
  *
  *  思路： 定义 三个节点 当前节点  前一节点  后一节点
+ *    	   依次更新 当前节点的next指针 前一节点 当前节点
  *
  */
 public class ReverseLinkedList {
