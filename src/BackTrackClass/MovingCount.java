@@ -33,15 +33,11 @@ public class MovingCount {
     private void movingCount(int threshold, int i, int j,int rows, int cols,boolean[] pass){
         int index=i*cols+j;
         //递归退出条件
-        if(i<0||j<0||i>=rows||j>=cols||pass[index])
-            //为什么不同时判断  helper(i,j)>threshold 因为如果满足，除了return;，还要将当前位置置false;
+        if(i<0||j<0||i>=rows||j>=cols||pass[index]||helper(i,j)>threshold)
             return;
         if(helper(i,j)<=threshold){
             count++;
             pass[index]=true;
-        }else{
-            pass[index]=false;	//为什么不能设置成 true 因为如果是 true 会造成 有的地方走不到的情况 如3*3矩阵的（2,2）
-            return;
         }
         movingCount(threshold,i-1,j,rows,cols,pass);
         movingCount(threshold,i,j-1,rows,cols,pass);
