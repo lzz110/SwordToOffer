@@ -29,6 +29,7 @@ public class MultiPlyArray {
             }
             //算上三角
             int temp=1;
+			//从len-2是因为最后一个已经算完了
             for(int j=len-2;j>=0;j--){
                 temp=temp*A[j+1];
                 B[j]=B[j]*temp;
