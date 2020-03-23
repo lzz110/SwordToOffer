@@ -4,8 +4,12 @@ package ArraysClass;
  * 题目：最长不含重复字符的子字符串 返回其长度
  *
  * 思路：动态规划
- *          d<=f(i-1) f(i)=d
- *          d>f(i-1)  f(i)=f(i-1)+1
+ *			首先定义函数f(i)表示以第i个字符为结尾的不包含重复字符的子字符串的最长长度,则有一下三种情形
+ *   		1）第i个字符在之前都没有出现过，则f(i) = f(i-1)+1
+ *   		2）第i个字符在之前出现过，但是在f(i-1)这个子串的前面出现过，则最长还是f(i-1)+1
+ *			3）第i个字符在之前出现过，不过在f(i-1)的这个子串的中间出现过，则f(i)=这两个重复字符的中间值 即i - prevIndex
+ *         d<=f(i-1) f(i)=d
+ *         d>f(i-1)  f(i)=f(i-1)+1
  */
 public class lengthOfLongestSubstring {
     public static void main(String[] args) {

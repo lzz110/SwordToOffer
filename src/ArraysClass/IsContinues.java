@@ -41,6 +41,6 @@ public class IsContinues {
             left=right;
             right++;
         }
-        return numberofgap>numberofzero?false:true;
+        return numberofgap <= numberofzero;
     }
 }
