@@ -28,7 +28,6 @@ public class GetMedian {
             return o2 - o1;
         }
     });
-
     //记录偶数个还是奇数个
     int count = 0;
     //每次插入小顶堆的是当前大顶堆中最大的数

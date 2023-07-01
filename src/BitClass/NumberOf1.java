@@ -5,6 +5,7 @@ package BitClass;
  *  思路：
  *      方法一：标志位从后向前 逐位判断  如果从前向后 负数右移 补1 陷入死循环
  *      方法二：n=n&(n-1)  会把该整数最右边的 1变成 0
+ *      方法三：调用API  Integer.bitCount(n) n为十进制数
  */
 public class NumberOf1 {
     public static void main(String[] args) {

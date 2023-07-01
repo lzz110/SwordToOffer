@@ -55,7 +55,8 @@ public class MaxinWindows {
     //2）前面比k大的X，比较两者下标，判断X是否已不在窗口之内，不在了，直接移出队列
     //队列的第一个元素是滑动窗口中的最大值
 
-    /*public ArrayList<Integer> maxInWindows(int [] num, int size) {
+
+    public ArrayList<Integer> maxInWindows(int [] num, int size) {
         ArrayList<Integer> res = new ArrayList<>();
         if (size == 0) return res;
         int begin;
@@ -75,7 +76,9 @@ public class MaxinWindows {
                 res.add(num[q.peekFirst()]);
         }
         return res;
-    }*/
+    }
+
+    /*
     public ArrayList<Integer> maxInWindows(int [] num, int size) {
         ArrayList<Integer> res=new ArrayList<>();
         ArrayDeque<Integer> q=new ArrayDeque<>();
@@ -97,4 +100,5 @@ public class MaxinWindows {
         }
         return res;
     }
+    */
 }

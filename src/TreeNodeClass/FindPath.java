@@ -52,7 +52,7 @@ public class FindPath {
         if(target == 0 && root.left == null && root.right == null)
             listAll.add(new ArrayList<Integer>(list));        //如果不new一个 后面remove 会把结果list 里面的减掉
             //new 只是把当前的结果 list 重新封装成一个新的 list 传给listAll
-//            listAll.add(list);
+
         FindPath(root.left, target);        //再走左子节点
         FindPath(root.right, target);       //再走右子节点
         list.remove(list.size()-1);   //回溯思想 把当前结果中最后一步的结果删除 回退到上一步

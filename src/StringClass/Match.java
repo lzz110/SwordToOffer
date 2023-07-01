@@ -12,7 +12,7 @@ package StringClass;
         如果字符串第一个字符跟模式第一个字符不匹配，则模式后移2个字符，继续匹配。如果字符串第一个字符跟模式第一个字符匹配，可以有3种匹配方式：
         1、模式后移2字符，相当于x*被忽略；
         2、字符串后移1字符，模式后移2字符；
-        3、字符串后移1字符，模式不变，即继续匹配字符下一位，因为*可以匹配多位；
+        3、字符串后移1字符，模式不变，即准备再去匹配str中的下一个，因为*可以匹配多位；
 
     情况2可以被情况1和情况3包含。执行一次情况3，再执行一次情况1，就相当于情况2。代码41行直接删除，也能通过。
         */
@@ -40,8 +40,8 @@ public class Match {
             if ((strIndex != str.length && pattern[patternIndex] == str[strIndex]) || (pattern[patternIndex] == '.' && strIndex != str.length)) {
                 return matchCore(str, strIndex, pattern, patternIndex + 2)//模式后移2，视为x*匹配0个字符
                         || matchCore(str, strIndex + 1, pattern, patternIndex + 2)//视为模式匹配1个字符
-                        || matchCore(str, strIndex + 1, pattern, patternIndex);//*匹配1个，再匹配str中的下一个
-            } else {
+                        || matchCore(str, strIndex + 1, pattern, patternIndex);//*匹配1个，准备再去匹配str中的下一个
+            } else {    //字符串第1个跟模式第1个不匹配  模式后移2位
                 return matchCore(str, strIndex, pattern, patternIndex + 2);
             }
         }

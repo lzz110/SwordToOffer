@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class FindContinueSequence {
     public static void main(String[] args) {
         ArrayList<ArrayList<Integer>> temp=new ArrayList<ArrayList<Integer>>();
-        temp=new FindContinueSequence().FindContinuousSequence(3);
+        temp=new FindContinueSequence().FindContinuousSequence(100);
         Iterator<ArrayList<Integer>> it = temp.iterator();
         while(it.hasNext()){
             System.out.print(it.next());

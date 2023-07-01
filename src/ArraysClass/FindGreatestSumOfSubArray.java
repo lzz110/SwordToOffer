@@ -16,11 +16,11 @@ public class FindGreatestSumOfSubArray {
         if(array==null||array.length==0)
             return 0;
         int sum=0,res=Integer.MIN_VALUE;
-        for(int i=0;i<array.length;i++){
-            if(sum<0)
-                sum=0;
-            sum=sum+array[i];
-            res=sum>res?sum:res;
+        for (int value : array) {
+            if (sum < 0)
+                sum = 0;
+            sum = sum + value;
+            res = Math.max(sum, res);
         }
         return res;
     }

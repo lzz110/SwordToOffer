@@ -30,7 +30,6 @@ public class GetLeastNumbers {
         }
         //构建优先队列，基于最大堆 重写compare  规定降序排列
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(k, new Comparator<Integer>() {
-
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o2.compareTo(o1);    //正常是升序排列 o1.compareTo(o2) 现在将 o2 和o1 互换 变成降序

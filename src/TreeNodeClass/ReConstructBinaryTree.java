@@ -1,5 +1,8 @@
 package TreeNodeClass;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  * 题目：输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。
  *
@@ -12,8 +15,9 @@ public class ReConstructBinaryTree {
     public static void main(String[] args) {
         int[] pre={1,2,4,7,3,5,6,8};
         int[] in={4,7,2,1,5,3,8,6};
+
         TreeNode res=new ReConstructBinaryTree().reConstructBinaryTree(pre,in);
-        res.preOrderTraverse1(res);
+        res.preOrderTraverse(res);
     }
 
     public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
@@ -40,6 +44,17 @@ public class ReConstructBinaryTree {
             }
 
         return root;
+    }
+
+    // 叶子数
+    private  static int leafNum(TreeNode node) {
+        if (node != null) {
+            if (node.left == null && node.right == null) {
+                return 1;
+            }
+            return leafNum(node.left) + leafNum(node.right);
+        }
+        return 0;
     }
 
 }

@@ -13,12 +13,14 @@ public class PrintMatrix {
 
     public static void main(String[] args) {
 //        int[][] arr={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
-        int[][] arr={{1},{2},{3},{4}};
-//        System.out.println(arr.length);
-//        System.out.println(arr[0].length);
-        ArrayList<Integer> res=new ArrayList<Integer>();
-        res=new PrintMatrix().printMatrix(arr);
-        System.out.println(res);
+//        int[][] arr={{1},{2},{3},{4}};
+        int[][] arr={{1}};
+
+        System.out.println(arr.length);
+        System.out.println(arr[0].length);
+//        ArrayList<Integer> res=new ArrayList<Integer>();
+//        res=new PrintMatrix().printMatrix(arr);
+//        System.out.println(res);
     }
 
 

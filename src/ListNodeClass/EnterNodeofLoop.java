@@ -4,9 +4,8 @@ package ListNodeClass;
  * 题目：
  *      给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
  * 思路：
- *      先 双指针 判断链表是否有环 ，没有直接return null
- *      有环的话 得到指针相遇的节点 （一定在环中） 计算环中节点的个数 n
- *      再次使用 双指针 让前面的指针先走 n 步 之后 两个指针一起走 再次遇到的节点就是 入口节点
+ *      先 快慢指针 判断链表是否有环 ，没有直接return null
+ *      有环的话，在相遇时，将快指针从头开始走，再次与慢指针相遇的节点就是入口节点
  *
  */
 
@@ -24,6 +23,24 @@ public class EnterNodeofLoop {
         pHead.addNode(four);
 
     }
+
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(true){
+            if(fast==null || fast.next ==null) return null;
+            fast = fast.next.next;
+            slow = slow.next;
+            if(fast == slow) break;
+        }
+        fast = head;
+        while(fast!=slow){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
     public ListNode EntryNodeOfLoop(ListNode pHead) {
         if(pHead==null)
             return null;
@@ -70,6 +87,7 @@ public class EnterNodeofLoop {
         }
         return null;
     }
+
 }
 
 

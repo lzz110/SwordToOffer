@@ -1,4 +1,4 @@
-package HashClass;
+package HashAndSetClass;
 
 /**
  *  题目：

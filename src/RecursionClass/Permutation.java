@@ -16,8 +16,44 @@ public class Permutation {
         ArrayList<String> res=new ArrayList<>();
         res=new Permutation().Permutation(str);
         System.out.println(res);
+        HashMap<Character,Integer>hashmap=new HashMap<>();
+        for(char c:str.toCharArray()){
+            int temp=hashmap.getOrDefault(c,0);
+        }
     }
 
+    public ArrayList<String> Permutation(String str){
+        ArrayList<String> res = new ArrayList<String>();
+        if(str==null||str.length()==0)return res;
+        int len=str.length();
+        boolean[] used=new boolean[len];
+        StringBuilder sb=new StringBuilder();
+        PermutationHelper(str.toCharArray(),len,0,used,res,sb);
+        return res;
+    }
+    private void PermutationHelper(char[] chars,int len,int depth,boolean[] used
+            ,ArrayList<String> res,StringBuilder sb){
+        if(len==depth){
+            res.add(new String(sb));
+            return ;
+        }
+        for(int i=0;i<len;i++){
+            if(used[i]){
+                continue;
+            }
+            //关键
+            if(i>0&&chars[i]==chars[i-1]&&!used[i-1]){
+                continue;
+            }
+            sb.append(chars[i]);
+            used[i]=true;
+            PermutationHelper(chars,len,depth+1,used,res,sb);
+            used[i]=false;
+            sb.deleteCharAt(sb.length()-1);
+        }
+
+    }
+    /*
     public ArrayList<String> Permutation(String str){
         ArrayList<String> res=new ArrayList<>();
         if(str.length()>0){
@@ -45,7 +81,7 @@ public class Permutation {
         char temp = cs[i];
         cs[i] = cs[j];
         cs[j] = temp;
-    }
+    }*/
     /*
     public ArrayList<String> RecursionClass.Permutation(String str){
         ArrayList<String> list = new ArrayList<String>();

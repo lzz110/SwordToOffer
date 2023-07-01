@@ -27,7 +27,7 @@ public class SerializeAndDeserialize {
         System.out.println(serialize);
 
         TreeNode deserialize = new SerializeAndDeserialize().Deserialize(serialize);
-        root.preOrderTraverse1(deserialize);
+        root.preOrderTraverse(deserialize);
     }
     public int index = -1;
     String Serialize(TreeNode root) {

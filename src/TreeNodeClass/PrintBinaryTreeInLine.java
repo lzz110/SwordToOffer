@@ -96,6 +96,10 @@ public class PrintBinaryTreeInLine {
      * 第三行按照从左到右的顺序打印，其他行以此类推。
      * @param pRoot
      * @return
+     *
+     * 思路：使用两个栈作为辅助容器。打印某一层节点时，把下一层的子节点保存到栈内。
+     * 如果当前打印的是奇数层，则先保存左子树节点再保存右子树节点到第一个栈内；
+     * 如果当前打印的是偶数层，则先保存右子树在保存左子树节点到第二个栈内。
      */
     //不记录层数
     public ArrayList<ArrayList<Integer>>Print2(TreeNode pRoot) {
@@ -148,7 +152,7 @@ public class PrintBinaryTreeInLine {
         while(!stack1.empty()||!stack2.isEmpty()){
             while(!stack1.isEmpty()){
                 TreeNode t=stack1.pop();
-                if(t!=null){    //先左后右
+                if(t!=null){    //二叉树节点顺序先左后右
                     temp.add(t.val);
                     if(t.left!=null)
                         stack2.add(t.left);
@@ -162,7 +166,7 @@ public class PrintBinaryTreeInLine {
             }
             while(!stack2.isEmpty()){
                 TreeNode t=stack2.pop();
-                if(t!=null){    //先右后左
+                if(t!=null){    //二叉树先右后左
                     temp.add(t.val);
                     if(t.right!=null)
                         stack1.add(t.right);
@@ -175,9 +179,7 @@ public class PrintBinaryTreeInLine {
                 temp.clear();
             }
         }
-
         return res;
     }
-
 
 }

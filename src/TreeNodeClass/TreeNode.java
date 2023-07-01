@@ -26,11 +26,11 @@ public class TreeNode {
         this.right = right;
     }
 
-    public void preOrderTraverse1(TreeNode root) {
+    public void preOrderTraverse(TreeNode root) {
         if (root != null) {
             System.out.print(root.val+"  ");
-            preOrderTraverse1(root.left);
-            preOrderTraverse1(root.right);
+            preOrderTraverse(root.left);
+            preOrderTraverse(root.right);
         }
     }
 

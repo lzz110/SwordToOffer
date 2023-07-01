@@ -70,4 +70,35 @@ public class FingKthTotail {
         return last;
     }*/
 
+    /**
+     * 19. 删除链表的倒数第 N 个结点
+     * 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+
+     * 示例 1：输入：head = [1,2,3,4,5], n = 2  输出：[1,2,3,5]
+     *
+     *
+     * 思路： 关键需要找到倒数第 N 个 节点的前一个节点，
+     * 使用快慢指针，让快指针先走 n 步， 之后快慢指针一起走，当快指针的 next == null , 慢指针指向的就是 倒数第 N 个节点
+     *
+     */
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+        for(int i=0;i<n;i++){
+            fast = fast.next;
+        }
+
+        while(fast.next !=null){
+            slow=slow.next ;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
+
+    }
+
 }

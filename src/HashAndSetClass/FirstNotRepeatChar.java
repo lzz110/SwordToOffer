@@ -1,6 +1,4 @@
-package HashClass;
-
-import java.util.Map;
+package HashAndSetClass;
 
 /**
  * 题目：
