@@ -5,8 +5,12 @@ package StringClass;
  *      输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。
  *      例如输入字符串"I am a student. " 则输出"student. a am I"
  * 思路：
- *      一共反转两次
- *      第一次整个句子反转 第二次只反转单词 遇到‘ ’停止
+ *      方法一： 一共反转两次
+ *          第一次整个句子反转 第二次只反转单词 遇到‘ ’停止
+ *
+ *      方法二： 从后往前，注意单词中间的多余空格删除
+ *
+ *
  *
  * 题目二：字符序列 S=”abcXYZdef”,要求输出循环左移3位后的结果，即 “XYZdefabc”。
  *
@@ -70,6 +74,21 @@ public class ReverseString {
         reverseEachWord(sb);
         return sb.toString();
     }
+
+
+    public String reverseWords2(String s) {
+        s = s.trim(); // 删除首尾空格
+        int slow = s.length() - 1, fast = slow;
+        StringBuilder res = new StringBuilder();
+        while(fast >= 0) {
+            while(fast >= 0 && s.charAt(fast) != ' ') fast--; // 搜索首个空格
+            res.append(s.substring(fast + 1, slow + 1) + " "); // 添加单词
+            while(fast >= 0 && s.charAt(fast) == ' ') fast--; // 跳过单词间空格
+            slow = fast; // j 指向下个单词的尾字符
+        }
+        return res.toString().trim(); // 转化为字符串并返回
+    }
+
 
     private StringBuilder removeSpace(String s) {
         // System.out.println("ReverseWords.removeSpace() called with: s = [" + s + "]");
@@ -194,4 +213,6 @@ public class ReverseString {
             right--;
         }
     }
+
+
 }
