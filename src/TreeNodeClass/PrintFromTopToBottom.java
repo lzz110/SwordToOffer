@@ -3,6 +3,7 @@ package TreeNodeClass;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * 题目：从上到下打印二叉树
@@ -49,5 +50,27 @@ public class PrintFromTopToBottom {
             list.add(temp.val);
         }
         return list;
+    }
+
+    public int[] levelOrder(TreeNode root) {
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(root == null) return new int[0];
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            while(size>0){
+                TreeNode cur = queue.poll();
+                array.add(cur.val);
+                if(cur.left!=null) queue.add(cur.left);
+                if(cur.right!=null) queue.add(cur.right);
+                size--;
+            }
+        }
+        int[] arr= new int[array.size()];
+        for(int i=0;i<array.size();i++){
+            arr[i]=array.get(i);
+        }
+        return arr;
     }
 }

@@ -3,18 +3,22 @@ import java.util.*;
 /**
  * 题目：最长不含重复字符的子字符串 返回其长度
  *
- * 思路：
- *
- *      定义一个 map 数据结构存储 (k, v)，其中 key 值为字符，value 值为字符位置 +1，加 1 表示从字符位置后一个才开始不重复
- *      我们定义不重复子串的开始位置为 start，结束位置为 end
- *      随着 end 不断遍历向后，会遇到与 [start, end] 区间内字符相同的情况，此时将字符作为 key 值，获取其 value 值，并更新 start，此时 [start, end] 区间内不存在重复字符
- *      无论是否更新 start，都会更新其 map 数据结构和结果 ans。
- *
- *
- *      start不动，end向后移动
- *      当end遇到重复字符，start应该放在上一个重复字符(上一个重复字符 可能是当前的 map.get(alpha) ， 也可能是 start) 的位置的后一位，同时记录最长的长度
- *      怎样判断是否遇到重复字符，且怎么知道上一个重复字符的位置？--用哈希字典的key来判断是否重复，用value来记录该字符的下一个不重复的位置。
- *
+ * 思路： 滑动窗口
+
+*             1、首先，判断当前字符是否包含在map中，如果不包含，将该字符添加到map（字符，字符在数组下标）,
+*              此时没有出现重复的字符，左指针不需要变化。此时不重复子串的长度为：i-left+1，与原来的maxLen比较，取最大值；
+*
+*             2、如果当前字符 ch 包含在 map中，此时有2类情况：
+*              1）当前字符包含在当前有效的子段中，如：abca，当我们遍历到第二个a，当前有效最长子段是 abc，我们又遍历到a，
+*              那么此时更新 left 为 map.get(a)+1=1，当前有效子段更新为 bca；
+*              2）当前字符不包含在当前最长有效子段中，如：abba，我们先添加a,b进map，此时left=0，我们再添加b，发现map中包含b，
+*              而且b包含在最长有效子段中，就是1）的情况，我们更新 left=map.get(b)+1=2，此时子段更新为 b，而且map中仍然包含a，map.get(a)=0；
+*              随后，我们遍历到a，发现a包含在map中，且map.get(a)=0，如果我们像1）一样处理，就会发现 left=map.get(a)+1=1，实际上，left此时
+*              应该不变，left始终为2，子段变成 ba才对。
+*
+*              为了处理以上2类情况，我们每次更新left，left=Math.max(left , map.get(ch)+1).
+*              另外，更新left后，不管原来的 s.charAt(i) 是否在最长子段中，我们都要将 s.charAt(i) 的位置更新为当前的i，
+*              因此此时新的 s.charAt(i) 已经进入到 当前最长的子段中！
  *
  * 动态规划
  *			首先定义函数f(i)表示以第i个字符为结尾的不包含重复字符的子字符串的最长长度,则有一下三种情形
@@ -38,25 +42,21 @@ public class lengthOfLongestSubstring {
 //        System.out.println(new lengthOfLongestSubstring().lengthOfLongestSubstring(s));
     }
 
-    public int lengthOfLongestSubstring(String s)
-    {
-        if(s==null || s.length()==0){
-            return 0;
-        }
-        Map<Character, Integer> hashmap=new HashMap<>();
-        int len= s.length(); int res=0;
-        for(int start=0,end=0;end<len;end++){
-            Character ch=s.charAt(end);
-            if(hashmap.containsKey(ch)){
-                //注意：要+1
-                start= Math.max(hashmap.get(ch)+1,start);
+    public int lengthOfLongestSubstring(String s) {
+        if (s.length()==0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max = 0;
+        int left = 0;
+        for(int i = 0; i < s.length(); i ++){
+            if(map.containsKey(s.charAt(i))){
+                left = Math.max(left,map.get(s.charAt(i)) + 1);
             }
-            hashmap.put(ch,end);
-            res=Math.max(res,end-start+1);
+            map.put(s.charAt(i),i);
+            max = Math.max(max,i-left+1);
         }
-        return res;
-    }
+        return max;
 
+    }
 
 /*
     public int ArraysClass.lengthOfLongestSubstring(String s) {
