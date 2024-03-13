@@ -1,7 +1,7 @@
 package ListNodeClass;
 
 /**
- * 公用链表节点类
+ * 公用单向链表节点类
  * 节点属性 ： val  next
  *
  */

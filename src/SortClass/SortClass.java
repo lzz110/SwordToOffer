@@ -17,7 +17,8 @@ public class SortClass {
 //        System.out.println(Arrays.toString(newarr));
 //          int[] resarr= new SortClass().mergeSort(arr);
 //        new SortClass().MySelect(arr);
-        new SortClass().heapSort(arr);
+//        new SortClass().heapSort(arr);
+        new SortClass().quickSort(arr,0,arr.length-1);
 //
         System.out.println(Arrays.toString(arr));
     }
@@ -126,26 +127,12 @@ public class SortClass {
      *  4. 现在将中心元素与其他元素进行比较，如果到达的元素小于或等于中心元素时，则将较小的元素和上次找到的较大元素交换位置。
      *  5. 该过程一直进行到到达倒数第二个元素为止
      *  6. 最后将中心元素与第二个指针指向的元素交换位置。
+     *
      * 注意：
      *  1. 递归函数中首先写判断条件： 当 low < high 时进行递归
      *  2. 递归函数的变量是中间节点的两侧，不包含中间节点
      *
      */
-
-
-    public int partition(int[] array, int low, int high) {
-        int pivot= array[high];
-        int secondpointer = low;
-        for (int i = low; i < high; i++) {
-            if(array[i] <= pivot){
-                swap(array,i,secondpointer);
-                secondpointer++;
-            }
-        }
-        swap(array,secondpointer,high);
-        System.out.println(Arrays.toString(array));
-        return secondpointer;
-    }
 
     public  void quickSort(int[] array, int low, int high) {
         if (low < high) {
@@ -157,6 +144,21 @@ public class SortClass {
             quickSort(array, position + 1, high);
         }
     }
+
+    public int partition(int[] array, int low, int high) {
+        int pivot= array[high];     //选择数组的最后一个元素作为中心元素
+        int secondpointer = low;
+        for (int i = low; i < high; i++) {      //i 的取值为 左闭右开 [low,high)
+            if(array[i] <= pivot){
+                swap(array,i,secondpointer);
+                secondpointer++;
+            }
+        }
+        swap(array,secondpointer,high); //最后将中心元素与第二个指针指向的元素交换位置。
+        System.out.println(Arrays.toString(array));
+        return secondpointer;
+    }
+
 
     private void swap(int[] arr, int i, int j) {
         int temp=arr[i];

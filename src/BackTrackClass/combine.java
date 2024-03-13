@@ -30,8 +30,6 @@ import java.util.Queue;
  *
  */
 public class combine {
-
-
     List<List<Integer>> result = new ArrayList<>();
     LinkedList<Integer> path = new LinkedList<>();
     public List<List<Integer>> combine(int n, int k) {
