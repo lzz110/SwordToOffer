@@ -5,9 +5,8 @@ package ArraysClass;
  * @version 1.0
  * @date 2023/6/22 15:18
  *
- * 二分查找，
  * 关于 边界值的确定，建议看视频：https://www.bilibili.com/video/BV1fA4y1o715/?vd_source=863a059723c7940f38655c3384b44639
- *
+ *  while() 中的 判断条件 需要结合 区间判断，可以想象 left 是否可以与 right 相等，如果可以就是<= , 否则就是 <  
  * 左闭右闭区间 [left, right] , while(left <= right) ，  left=mid+1; right=mid-1;
  * 左闭右开区间 [left, right) , while(left <  right) ，  left=mid+1; right=mid;
  *

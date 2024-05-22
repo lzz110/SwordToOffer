@@ -4,7 +4,13 @@ package ListNodeClass;
  *  Leetcode 2 两数相加
  *
  *  注意 定义一个Head 节点 为 -1 , 并定义一个res 指向 Head, 最后返回Head.next
+ *  括号运算符 >  加法运算法  > 三元运算符
+ *      // int newValue = (p1==null?0:p1.val) + (p2==null?0:p2.val)+carry;
+ *      // 上面的代码 会分别评估p1和p2是否为null，并分别加上它们的val值（如果不是null的话）或0，再加上cur。
  *
+ *      // int newValue = p1==null?0:p1.val + (p2==null?0:p2.val) + cur;
+ *      // 上面的代码  p1.val会先与(p2==null?0:p2.val)的结果相加，再与cur相加。
+ *      // 但是，这个加法运算只有在p1不是null的情况下才会执行。如果p1是null，那么整个表达式的结果将只是0，忽略了p2和cur的值。
  *
  */
 public class AddTwoNumber {
