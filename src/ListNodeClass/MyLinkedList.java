@@ -4,6 +4,21 @@ package ListNodeClass;
  * @author xdr630
  * @version 1.0
  * @date 2023/6/23 18:54
+ * 
+ * 注意： 链表中 删除结点需要分为 删除头结点和 删除非头节点； 
+ *      因为删除非头节点 需要找到前一个节点，并调整其 next 指针
+ *      删除头节点时，直接调整 head 指针即可
+ * 
+ *      链表中找当前节点的前一个节点：
+ *      while(index>0){
+ *           cur=cur.next;
+ *           index--;
+ *      }
+ *      链表中找当前节点：
+ *      while(index>=0){
+ *           cur=cur.next;
+ *           index--;
+ *      }
  */
 public class MyLinkedList {
 
@@ -52,9 +67,9 @@ public class MyLinkedList {
             pre=pre.next;
             index--;
         }
-        ListNode newnode= new ListNode(val);
-        newnode.next = pre.next;
-        pre.next = newnode;
+        ListNode newnode= new ListNode(val);  // 创建新的节点
+       newnode.next = pre.next;   // 新节点的 next 指向前一个节点的 next
+       pre.next = newnode;  // 前一个节点的 next 指向新节点
     }
 
     public void deleteAtIndex(int index) {

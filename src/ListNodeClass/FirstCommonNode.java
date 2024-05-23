@@ -34,6 +34,35 @@ public class FirstCommonNode {
         return A;
     }
 
+    /**
+     * 
+     * 好理解的方法一：
+     */
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+    
+        ListNode tmp1 = headA;
+        ListNode tmp2 = headB;
+    
+        while (tmp1 != null && tmp2 != null) {
+            if (tmp1 == tmp2) {
+                return tmp1;
+            }
+            tmp1 = tmp1.next;
+            tmp2 = tmp2.next;
+            // 如果 tmp1 或 tmp2 到达链表末尾，则将其重置为另一个链表的头
+            if (tmp1 == null && tmp2 != null) {
+                tmp1 = headB;
+            }
+            if (tmp2 == null && tmp1 != null) {
+                tmp2 = headA;
+            }
+        }
+    
+        return null;
+    }
     public  ListNode FirstCommonNode(ListNode pHead1, ListNode pHead2) {
         int  phead1length=getlength(pHead1);
         int  phead2length=getlength(pHead2);
