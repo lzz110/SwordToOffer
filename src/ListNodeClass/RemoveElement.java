@@ -77,10 +77,21 @@ public class RemoveElement {
      * 示例 2：  输入：head = [1], n = 1  输出：[]
      * 示例 3：  输入：head = [1,2], n = 1  输出：[1]
      *
-     * 思路：
+     * 思路一：
      *      快慢指针，先让快指针先走n 步， 之后两个指针一起走，当 fast。next ==null , slow 指针指向的就是 倒数第n 个节点的前一个节点
      *      为了保证 slow.next.next != null , 建议 slow 和 fast 从虚拟节点 出发， 如果从head 出发，当head = [1] n = 1 时，slow.next.next == null
      *      ListNode fast = dummy;   ListNode slow = dummy;
+     * 
+     * 思路二：
+     *      遍历链表一次，计算链表的总长度 len。
+     *      如果需要删除的是头节点（即 n == len），直接返回 head.next 作为新的头节点。
+     *      找到目标节点的前一个节点pre， 修改指向 prev.next=prev.next.next; ， 返回修改后的链表的头节点 head。
+     */
+    /**
+     * 思路一
+     * @param head
+     * @param n
+     * @return
      */
     public ListNode removeNthFromEnd(ListNode head, int n) {
         //快慢指针
@@ -100,7 +111,35 @@ public class RemoveElement {
 
         return dummy.next;
     }
-
+    /**
+     * 思路二
+     * @param head
+     * @param n
+     * @return
+     */
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        //calculate len;
+        ListNode cur=head;
+        int len=0;
+        while(cur!=null){
+            len++;
+            cur=cur.next;
+        }
+        if(len-n<0){
+            return new ListNode(0);
+        }
+        if (n == len) {
+            return head.next;
+        }
+        int startIndex=len-n;
+        ListNode prev = head;
+        while(startIndex!=1){
+            prev=prev.next;
+            startIndex--;
+        }
+        prev.next=prev.next.next;
+        return head;
+    }
     /**
      *
      * 剑指 Offer 22. 链表中倒数第k个节点

@@ -17,7 +17,7 @@ import java.util.*;
  *          更新边界：例如从左到右填完后，上边界 t += 1，相当于上边界向内缩 1。
  *      使用num <= tar而不是l < r || t < b作为迭代条件，是为了解决当n为奇数时，矩阵中心数字无法在迭代过程中被填充的问题。
  *
- *
+ *  注意： 定义边界时，right = n-1，bottom=n-1 ，因为后续要指定 right 为二维数组中的index 
  */
 public class GenerateMatrix {
 
