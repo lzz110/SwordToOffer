@@ -16,7 +16,15 @@ public class IsAnagram {
         System.out.println('a');
     }
 
-
+    /*
+     * @lc app=leetcode.cn id=242 lang=java
+     *
+     * [242] 有效的字母异位词
+     *  若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词
+     *
+     *  思路： 创建一个hash 数组，将 s 和 t 中的每个字符分别做 + 和 - 的操作，之后判断数组元素是否为 0，全为0时，是一个有效的字母异位词
+     *      
+     */
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length())return false;
         int[] hash = new int[26];
@@ -33,8 +41,62 @@ public class IsAnagram {
 
     }
 
+    /*
+     * @lc app=leetcode.cn id=1002 lang=java
+     *
+     * [1002] 查找共用字符
+     *   给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ 包括重复字符），并以数组形式返回。
+     *   
+     *    思路： 找出每个字符在所有字符串中最少出现的次数。
+     *       初始化 minFreq 数组的大小为 26（因为英文字母有 26 个），并将其所有元素设置为 Integer.MAX_VALUE。
+     *       如果某个字符在某一个字符串中没有出现，那么它在 minFreq 数组中的对应值就会保持为初始值 Integer.MAX_VALUE，因此最终不会出现在结果中
+     *   
+     *   Q: 在结果进行遍历的时候，为什么要有两层循环？
+     *   A: 例如，字符 'l' 在所有字符串中至少出现了两次，所以结果列表中应该包含两个 'l'。
+     *   统计字符串中每个字母出现的次数
+     *      int[] current=new int[26];
+     *      for(char c:word.toCharArray()){
+     *           current[c-'a']++;
+     *      }
+     * 
+     */
+    public List<String> commonChars(String[] words) {
+        int[] minArray = new int[26];
+        for(int i=0;i<minArray.length;i++){
+            minArray[i]=Integer.MAX_VALUE;    
+        }
+        for(String word:words){
+            int[] count=new int[26];
+            for(char ch:word.toCharArray()){
+                count[ch-'a']++;
+            }
+            for(int i=0;i<26;i++){
+                minArray[i]=Math.min(minArray[i],count[i]);
+            }
+        }
+        List<String> res= new ArrayList<>();
+        for(int i=0;i<26;i++){
+            for(int j=0;j<minArray[i];j++){
+                res.add(String.valueOf((char)(i+'a')));
+            }
+        }
+        return res;
+    }
 
-
+    /*
+     * @lc app=leetcode.cn id=349 lang=java
+     *
+     * [349] 两个数组的交集
+     *  
+     *  题目：求两个数组的交集，即找出两个数组中都出现的元素，返回这些元素组成的数组。
+     *
+     *  思路：
+     *       使用 HashSet 存储第一个数组的所有元素。
+     *       遍历第二个数组，检查每个元素是否在 HashSet 中，如果在，则将其添加到结果集中。
+     *       将结果集 HashSet 转换为整数数组返回。
+     *  注意： 将 HashSet<Integer> 数组 转换为 整数数组： res.stream().mapToInt(Integer::intValue).toArray();
+     *       
+     */
     public int[] intersection(int[] nums1, int[] nums2) {
         if(nums1==null && nums2==null) return new int[]{0};
         HashSet<Integer> set = new HashSet<>();
@@ -47,7 +109,15 @@ public class IsAnagram {
                 res.add(nums2[i]);
             }
         }
+        // 方法一：使用 Java 8 中的流式操作来将 HashSet 中的元素转换为整数数组
         return res.stream().mapToInt(Integer::intValue).toArray();
+        // 方法二：通过遍历 HashSet，手动将元素一个个地添加到 int 数组中
+        // int[] res = new int[resSet.size()];
+        // int i = 0;
+        // for (Integer num : resSet) {
+        //     res[i++] = num;
+        // }
+        // return res;
     }
 
 
